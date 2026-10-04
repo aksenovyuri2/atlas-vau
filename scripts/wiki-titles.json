@@ -1,0 +1,1083 @@
+{
+"ant-emperors-heli": [
+"Snow Hill Island",
+"Emperor penguin"
+],
+"ant-emperor-camp": [
+"Emperor penguin",
+"Queen Maud Land"
+],
+"ant-south-pole": [
+"Amundsen–Scott South Pole Station",
+"South Pole"
+],
+"ant-last-degree": [
+"South Pole",
+"Antarctic Plateau"
+],
+"ant-day-landing": [
+"Wolf's Fang Runway",
+"Queen Maud Land"
+],
+"ant-peter-i": [
+"Peter I Island",
+"Bellingshausen Sea"
+],
+"ant-deep-weddell": [
+"Weddell Sea",
+"Endurance (1912 ship)"
+],
+"ant-ross": [
+"Scott's Hut",
+"Shackleton's Hut",
+"Ross Ice Shelf"
+],
+"ant-south-georgia": [
+"South Georgia Island",
+"Grytviken",
+"King penguin"
+],
+"ant-walkin": [
+"Antarctic Peninsula",
+"Lemaire Channel",
+"Gentoo penguin"
+],
+"ant-basecamp": [
+"Paradise Harbor",
+"Antarctic Peninsula"
+],
+"ant-subantarctic": [
+"Campbell Island, New Zealand",
+"Macquarie Island",
+"Auckland Islands"
+],
+"ant-ice-marathon": [
+"Antarctic Ice Marathon",
+"Union Glacier"
+],
+"ant-overflight": [
+"Transantarctic Mountains",
+"Antarctica"
+],
+"arc-north-pole": [
+"50 Let Pobedy",
+"North Pole"
+],
+"arc-wrangel": [
+"Wrangel Island",
+"Polar bear"
+],
+"arc-chukotka": [
+"Whale Bone Alley",
+"Cape Dezhnev",
+"Uelen",
+"Chukchi people"
+],
+"arc-greenland-crossing": [
+"Greenland ice sheet",
+"Greenland"
+],
+"arc-ellesmere": [
+"Ellesmere Island",
+"Beechey Island",
+"Qaanaaq"
+],
+"arc-narwhals": [
+"Narwhal",
+"Baffin Island"
+],
+"arc-nw-passage": [
+"Northwest Passage",
+"Lancaster Sound"
+],
+"arc-churchill-bears": [
+"Churchill, Manitoba",
+"Polar bear"
+],
+"arc-churchill-belugas": [
+"Beluga whale",
+"Churchill River (Hudson Bay)"
+],
+"arc-svalbard": [
+"Pyramiden",
+"Barentsburg"
+],
+"arc-yamal": [
+"Nenets people",
+"Yamal Peninsula",
+"Reindeer"
+],
+"arc-kolyma": [
+"Kolyma Highway",
+"Kadykchan"
+],
+"arc-oymyakon": [
+"Oymyakon"
+],
+"arc-putorana": [
+"Putorana Plateau"
+],
+"arc-commanders": [
+"Commander Islands",
+"Bering Island"
+],
+"arc-whitesea-ice": [
+"White Sea",
+"Ice diving"
+],
+"arc-baikal": [
+"Lake Baikal",
+"Olkhon Island",
+"Baikal seal"
+],
+"fire-kamchatka": [
+"Klyuchevskaya Sopka",
+"Krasheninnikov (volcano)"
+],
+"fire-tolbachik": [
+"Tolbachik"
+],
+"fire-lengai": [
+"Ol Doinyo Lengai",
+"Lake Natron"
+],
+"fire-kilauea": [
+"Kīlauea",
+"Halemaʻumaʻu"
+],
+"fire-acatenango": [
+"Volcán de Fuego",
+"Acatenango"
+],
+"fire-reykjanes": [
+"Fagradalsfjall",
+"Reykjanes"
+],
+"fire-danakil": [
+"Dallol (hydrothermal system)",
+"Danakil Depression",
+"Erta Ale"
+],
+"fire-stromboli": [
+"Stromboli"
+],
+"fire-etna": [
+"Mount Etna",
+"Catania"
+],
+"fire-villarrica": [
+"Villarrica (volcano)"
+],
+"fire-masaya": [
+"Masaya Volcano"
+],
+"fire-ijen": [
+"Ijen"
+],
+"fire-yasur": [
+"Mount Yasur",
+"Tanna (island)"
+],
+"fire-darvaza": [
+"Darvaza gas crater"
+],
+"fire-nyiragongo": [
+"Mount Nyiragongo"
+],
+"cave-son-doong": [
+"Hang Sơn Đoòng"
+],
+"cave-hang-en": [
+"Hang Én",
+"Phong Nha-Kẻ Bàng National Park"
+],
+"cave-tu-lan": [
+"Tu Lan cave system",
+"Phong Nha-Kẻ Bàng National Park"
+],
+"cave-golondrinas": [
+"Sótano de las Golondrinas"
+],
+"cave-sarawak": [
+"Sarawak Chamber",
+"Gunung Mulu National Park"
+],
+"cave-cenotes": [
+"Sac Actun",
+"Cenote"
+],
+"cave-orda": [
+"Orda Cave"
+],
+"cave-vatnajokull": [
+"Vatnajökull",
+"Ice cave",
+"Jökulsárlón"
+],
+"land-ennedi": [
+"Ennedi Plateau",
+"Guelta d'Archei",
+"Ennedi-Est"
+],
+"land-tibesti": [
+"Tibesti Mountains",
+"Emi Koussi"
+],
+"land-tassili": [
+"Tassili n'Ajjer",
+"Tadrart Rouge",
+"Assekrem"
+],
+"land-akakus": [
+"Tadrart Acacus",
+"Ghadames",
+"Ubari Lakes"
+],
+"land-socotra": [
+"Socotra",
+"Dracaena cinnabari"
+],
+"land-roraima": [
+"Mount Roraima"
+],
+"land-angel": [
+"Angel Falls"
+],
+"land-skeleton": [
+"Skeleton Coast"
+],
+"land-tsingy": [
+"Tsingy de Bemaraha National Park"
+],
+"land-ustyurt": [
+"Ustyurt Plateau",
+"Mangystau Region",
+"Aral Sea"
+],
+"land-uyuni": [
+"Salar de Uyuni"
+],
+"land-lencois": [
+"Lençóis Maranhenses National Park"
+],
+"land-lut": [
+"Lut Desert"
+],
+"sea-sperm-whales": [
+"Sperm whale",
+"Dominica"
+],
+"sea-orcas": [
+"Orca",
+"Skjervøy"
+],
+"sea-silver-bank": [
+"Humpback whale",
+"Silver Bank"
+],
+"sea-tonga": [
+"Vavaʻu",
+"Humpback whale"
+],
+"sea-fakarava": [
+"Fakarava",
+"Grey reef shark"
+],
+"sea-hanifaru": [
+"Hanifaru",
+"Reef manta ray",
+"Manta ray"
+],
+"sea-magdalena": [
+"Magdalena Bay",
+"Striped marlin"
+],
+"sea-sardine-run": [
+"Sardine run",
+"Common dolphin",
+"Cape gannet"
+],
+"sea-cocos": [
+"Cocos Island",
+"Scalloped hammerhead"
+],
+"sea-jardines": [
+"Jardines de la Reina",
+"American crocodile"
+],
+"sea-bikini": [
+"Bikini Atoll",
+"USS Saratoga (CV-3)",
+"Operation Crossroads"
+],
+"sea-truk": [
+"Chuuk Lagoon",
+"Operation Hailstone"
+],
+"sea-tiger-beach": [
+"Tiger shark"
+],
+"sea-arribada": [
+"Ostional Wildlife Refuge",
+"Olive ridley sea turtle",
+"Sea turtle"
+],
+"sea-whale-sharks": [
+"Whale shark",
+"Isla Mujeres"
+],
+"sea-azores": [
+"Pico Island",
+"Sperm whale",
+"Azores"
+],
+"sea-jellyfish": [
+"Jellyfish Lake"
+],
+"wild-kurile": [
+"Kurile Lake",
+"Kamchatka brown bear"
+],
+"wild-boma": [
+"Boma National Park",
+"White-eared kob"
+],
+"wild-gorillas": [
+"Mountain gorilla",
+"Bwindi Impenetrable National Park",
+"Volcanoes National Park"
+],
+"wild-bonobos": [
+"Bonobo"
+],
+"wild-snow-leopard": [
+"Snow leopard",
+"Hemis National Park"
+],
+"wild-red-crabs": [
+"Christmas Island red crab"
+],
+"wild-kasanka": [
+"Kasanka National Park",
+"Straw-coloured fruit bat"
+],
+"wild-pantanal": [
+"Pantanal",
+"Jaguar"
+],
+"wild-mara": [
+"Mara River",
+"Blue wildebeest",
+"Wildebeest"
+],
+"wild-mana-pools": [
+"Mana Pools National Park"
+],
+"wild-rhino-walk": [
+"Matobo National Park",
+"White rhinoceros"
+],
+"wild-komodo": [
+"Komodo dragon",
+"Komodo National Park"
+],
+"wild-monarchs": [
+"Monarch Butterfly Biosphere Reserve"
+],
+"wild-chimps": [
+"Kibale National Park",
+"Chimpanzee"
+],
+"wild-tiger": [
+"Siberian tiger",
+"Tiger"
+],
+"wild-saiga": [
+"Saiga antelope"
+],
+"sky-eclipse": [
+"Solar eclipse",
+"Karnak",
+"Luxor"
+],
+"sky-soyuz": [
+"Baikonur Cosmodrome",
+"Soyuz (rocket family)"
+],
+"sky-progress": [
+"Progress (spacecraft)",
+"Baikonur Cosmodrome"
+],
+"sky-starship": [
+"SpaceX Starship",
+"SpaceX Starbase"
+],
+"sky-kourou": [
+"Guiana Space Centre",
+"Ariane 6"
+],
+"sky-il76": [
+"Ilyushin Il-76",
+"Reduced-gravity aircraft"
+],
+"sky-airzerog": [
+"Reduced-gravity aircraft",
+"Novespace",
+"Airbus A310"
+],
+"sky-gctc": [
+"Gagarin Cosmonaut Training Center",
+"Star City, Russia"
+],
+"sky-annular": [
+"Solar eclipse of October 14, 2023",
+"Solar eclipse"
+],
+"sky-atacama": [
+"Atacama Large Millimeter Array",
+"Atacama Desert"
+],
+"deep-idabel": [
+"Roatán",
+"Bluntnose sixgill shark"
+],
+"deep-curasub": [
+"Curaçao",
+"Submersible",
+"Willemstad"
+],
+"deep-everest-skydive": [
+"Mount Everest",
+"Tandem skydiving"
+],
+"deep-heliski": [
+"Heliskiing",
+"Avachinsky"
+],
+"deep-l39": [
+"Aero L-39 Albatros"
+],
+"deep-f104": [
+"Lockheed F-104 Starfighter"
+],
+"deep-antarctic-sub": [
+"Submersible",
+"Iceberg"
+],
+"lands-wakhan": [
+"Wakhan Corridor",
+"Little Pamir",
+"Afghan Pamir"
+],
+"lands-bamiyan": [
+"Buddhas of Bamiyan",
+"Band-e Amir National Park"
+],
+"lands-shibam": [
+"Shibam",
+"Wadi Do'an"
+],
+"lands-mundari": [
+"Mundari people",
+"Ankole-Watusi"
+],
+"lands-dprk": [
+"Pyongyang",
+"Juche Tower"
+],
+"lands-marshes": [
+"Mesopotamian Marshes",
+"Ziggurat of Ur",
+"Babylon"
+],
+"lands-palmyra": [
+"Palmyra",
+"Krak des Chevaliers"
+],
+"lands-mustang": [
+"Upper Mustang",
+"Lo Manthang",
+"Mustang District"
+],
+"lands-korowai": [
+"Korowai people"
+],
+"lands-ore-train": [
+"Mauritania Railway"
+],
+"lands-tristan": [
+"Tristan da Cunha",
+"Edinburgh of the Seven Seas"
+],
+"lands-pitcairn": [
+"Pitcairn Islands",
+"Adamstown, Pitcairn Islands"
+],
+"lands-st-helena": [
+"Saint Helena",
+"Jamestown, Saint Helena"
+],
+"lands-eritrea": [
+"Asmara",
+"Massawa"
+],
+"lands-laas-geel": [
+"Laas Geel"
+],
+"lands-chernobyl": [
+"Pripyat",
+"Chernobyl Exclusion Zone"
+],
+"rite-arbaeen": [
+"Arbaeen Pilgrimage",
+"Imam Husayn Shrine"
+],
+"rite-kumbh": [
+"Kumbh Mela",
+"Nashik"
+],
+"rite-kailash": [
+"Mount Kailash",
+"Saga Dawa Festival"
+],
+"rite-gerewol": [
+"Gerewol",
+"Wodaabe"
+],
+"rite-ashura": [
+"Mourning of Muharram",
+"Karbala"
+],
+"rite-nagol": [
+"Land diving",
+"Pentecost Island"
+],
+"rite-toraja": [
+"Toraja",
+"Tana Toraja Regency"
+],
+"rite-athos": [
+"Mount Athos",
+"Great Lavra"
+],
+"rite-thaipusam": [
+"Thaipusam",
+"Batu Caves"
+],
+"rite-tsaatan": [
+"Dukha people",
+"Khövsgöl Province",
+"Reindeer"
+],
+"rite-vodun": [
+"Ouidah",
+"West African Vodun"
+],
+"rite-eagles": [
+"Golden Eagle Festival",
+"Berkutchi"
+],
+"rite-hornbill": [
+"Hornbill Festival",
+"Naga people"
+],
+"rite-lathmar": [
+"Lathmar Holi",
+"Barsana"
+],
+"rite-gangasagar": [
+"Gangasagar Mela",
+"Sagar Island"
+],
+"rite-janitzio": [
+"Janitzio",
+"Day of the Dead"
+],
+"rite-timkat": [
+"Timkat",
+"Lalibela"
+],
+"exp-k2": [
+"Concordia (Pakistan)",
+"K2",
+"Baltoro Glacier",
+"Broad Peak"
+],
+"exp-aconcagua": [
+"Aconcagua"
+],
+"exp-lenin": [
+"Lenin Peak"
+],
+"exp-snowman": [
+"Snowman Trek",
+"Lunana Gewog",
+"Gangkhar Puensum",
+"Lunana"
+],
+"exp-mera": [
+"Mera Peak"
+],
+"exp-mds": [
+"Marathon des Sables",
+"Erg Chebbi",
+"Sahara"
+],
+"exp-baikal-marathon": [
+"Lake Baikal",
+"Listvyanka",
+"Baikal seal"
+],
+"ghost-mir": [
+"Mir mine"
+],
+"ghost-norilsk": [
+"Norilsk"
+],
+"ghost-varosha": [
+"Varosha, Famagusta"
+],
+"ghost-hashima": [
+"Hashima Island"
+],
+"ghost-kolmanskop": [
+"Kolmanskop"
+],
+"ghost-kola": [
+"Kola Superdeep Borehole"
+],
+"isl-easter": [
+"Easter Island",
+"Moai"
+],
+"isl-marquesas": [
+"Marquesas Islands",
+"Nuku Hiva",
+"Hiva Oa"
+],
+"isl-mangareva": [
+"Mangareva",
+"Gambier Islands",
+"Rikitea"
+],
+"isl-rapa-iti": [
+"Rapa Iti",
+"Austral Islands"
+],
+"isl-tokelau": [
+"Tokelau",
+"Atafu",
+"Fakaofo"
+],
+"isl-niue": [
+"Niue",
+"Alofi"
+],
+"isl-norfolk": [
+"Norfolk Island",
+"Kingston, Norfolk Island"
+],
+"isl-lord-howe": [
+"Lord Howe Island",
+"Ball's Pyramid"
+],
+"isl-chatham": [
+"Chatham Islands"
+],
+"isl-ogasawara": [
+"Bonin Islands",
+"Chichijima",
+"Hahajima"
+],
+"isl-kiritimati": [
+"Kiritimati",
+"Line Islands"
+],
+"isl-tuvalu": [
+"Funafuti",
+"Tuvalu"
+],
+"isl-nauru": [
+"Nauru"
+],
+"isl-yap": [
+"Yap",
+"Rai stones",
+"Manta ray"
+],
+"isl-nan-madol": [
+"Nan Madol"
+],
+"isl-trobriand": [
+"Trobriand Islands",
+"Kula ring",
+"Kiriwina"
+],
+"isl-crusoe": [
+"Robinson Crusoe Island",
+"Juan Fernández Islands"
+],
+"isl-socorro": [
+"Revillagigedo Islands",
+"Socorro Island",
+"Giant oceanic manta ray"
+],
+"isl-cocos-keeling": [
+"Cocos (Keeling) Islands"
+],
+"isl-rodrigues": [
+"Rodrigues"
+],
+"isl-barren": [
+"Barren Island (Andaman Islands)"
+],
+"isl-marovo": [
+"Marovo Lagoon",
+"New Georgia Islands",
+"Solomon Islands",
+"Ghizo Island"
+],
+"isl-mykines": [
+"Mykines, Faroe Islands"
+],
+"isl-st-kilda": [
+"St Kilda, Scotland",
+"Hirta"
+],
+"isl-foula": [
+"Foula"
+],
+"isl-ascension": [
+"Ascension Island",
+"Green Mountain (Ascension Island)"
+],
+"isl-jan-mayen": [
+"Jan Mayen",
+"Beerenberg"
+],
+"isl-bouvet": [
+"Bouvet Island"
+],
+"isl-noronha": [
+"Fernando de Noronha"
+],
+"isl-corvo": [
+"Corvo Island",
+"Azores"
+],
+"isl-bijagos": [
+"Bissagos Islands"
+],
+"isl-sao-tome": [
+"São Tomé Island",
+"Pico Cão Grande"
+],
+"isl-annobon": [
+"Annobón",
+"Gulf of Guinea"
+],
+"isl-banda": [
+"Banda Islands",
+"Banda Neira",
+"Myristica fragrans"
+],
+"isl-batanes": [
+"Batanes"
+],
+"terr-spm": [
+"Saint Pierre and Miquelon",
+"Saint-Pierre, Saint Pierre and Miquelon"
+],
+"terr-wallis": [
+"Wallis and Futuna",
+"Wallis Island",
+"Mata-Utu"
+],
+"terr-falklands": [
+"Falkland Islands",
+"Stanley, Falkland Islands",
+"Volunteer Point"
+],
+"terr-guna-yala": [
+"Guna Yala",
+"San Blas Islands"
+],
+"terr-pheasant": [
+"Pheasant Island"
+],
+"terr-llivia": [
+"Llívia"
+],
+"terr-melilla": [
+"Melilla",
+"Peñón de Vélez de la Gomera"
+],
+"terr-baarle": [
+"Baarle-Nassau",
+"Baarle-Hertog"
+],
+"terr-nahwa": [
+"Nahwa",
+"Madha",
+"Musandam Governorate"
+],
+"terr-w-sahara": [
+"Dakhla, Western Sahara",
+"Moroccan Western Sahara Wall"
+],
+"terr-bir-tawil": [
+"Bir Tawil",
+"Nubian Desert"
+],
+"terr-transnistria": [
+"Tiraspol",
+"Transnistria"
+],
+"terr-abkhazia": [
+"New Athos Cave",
+"Sukhumi",
+"Tkvarcheli"
+],
+"terr-malta-order": [
+"Villa del Priorato di Malta",
+"Aventine Hill"
+],
+"terr-scavi": [
+"Vatican Necropolis",
+"St. Peter's tomb"
+],
+"terr-diomede": [
+"Diomede Islands",
+"Little Diomede Island"
+],
+"edge-chimborazo": [
+"Chimborazo"
+],
+"edge-froward": [
+"Cape Froward",
+"Strait of Magellan"
+],
+"edge-cape-horn": [
+"Cape Horn",
+"Hornos Island"
+],
+"edge-navarino": [
+"Dientes de Navarino",
+"Navarino Island",
+"Puerto Williams"
+],
+"edge-puerto-toro": [
+"Puerto Toro",
+"Beagle Channel"
+],
+"edge-chelyuskin": [
+"Cape Chelyuskin",
+"Taymyr Peninsula"
+],
+"edge-knivskjell": [
+"Knivskjellodden",
+"North Cape (Norway)",
+"Magerøya"
+],
+"edge-assal": [
+"Lake Assal (Djibouti)",
+"Lake Abbe",
+"Djibouti"
+],
+"edge-ny-alesund": [
+"Ny-Ålesund",
+"Svalbard"
+],
+"edge-grimsey": [
+"Grímsey",
+"Arctic Circle"
+],
+"edge-kyzyl": [
+"Kyzyl",
+"Tuva"
+],
+"edge-dateline": [
+"Taveuni",
+"International Date Line",
+"Fiji"
+],
+"edge-barra": [
+"Barra Airport",
+"Barra"
+],
+"edge-papa-westray": [
+"Westray to Papa Westray flight",
+"Papa Westray"
+],
+"edge-lukla": [
+"Tenzing–Hillary Airport",
+"Lukla"
+],
+"edge-saba": [
+"Juancho E. Yrausquin Airport",
+"Saba (island)"
+],
+"edge-khunjerab": [
+"Khunjerab Pass",
+"Karakoram Highway"
+],
+"edge-everest-nbc": [
+"Everest base camps",
+"Rongbuk Monastery"
+],
+"land-manpupuner": [
+"Manpupuner rock formations"
+],
+"land-tunguska": [
+"Tunguska event"
+],
+"land-patom": [
+"Patomskiy crater",
+"Patom Highlands"
+],
+"land-lena-pillars": [
+"Lena Pillars"
+],
+"land-ukok": [
+"Ukok Plateau",
+"Belukha Mountain"
+],
+"land-kurils": [
+"Iturup",
+"Tyatya",
+"Kunashir Island"
+],
+"land-aral": [
+"Moynaq",
+"Aral Sea"
+],
+"land-kel-suu": [
+"Kel-Suu",
+"Naryn Region"
+],
+"land-sarez": [
+"Sarez Lake",
+"Usoi Dam",
+"Pamir Mountains"
+],
+"land-richat": [
+"Richat Structure"
+],
+"land-gilf-kebir": [
+"Gilf Kebir",
+"Cave of Swimmers"
+],
+"land-cano-cristales": [
+"Caño Cristales"
+],
+"land-kaieteur": [
+"Kaieteur Falls"
+],
+"land-plain-jars": [
+"Plain of Jars"
+],
+"land-badain": [
+"Badain Jaran Desert"
+],
+"land-fairy-meadows": [
+"Fairy Meadows National Park",
+"Nanga Parbat"
+],
+"land-deosai": [
+"Deosai National Park"
+],
+"land-dolpo": [
+"Phoksundo Lake",
+"Dolpa District"
+],
+"wild-dzanga": [
+"Dzanga-Sangha Special Reserve",
+"African forest elephant"
+],
+"wild-odzala": [
+"Odzala-Kokoua National Park",
+"Western lowland gorilla",
+"Gorilla"
+],
+"wild-loango": [
+"Loango National Park"
+],
+"wild-zakouma": [
+"Zakouma National Park"
+],
+"rite-hadza": [
+"Hadza people",
+"Lake Eyasi"
+],
+"exp-rwenzori": [
+"Rwenzori Mountains",
+"Margherita Peak"
+],
+"exp-chadar": [
+"Chadar Trek",
+"Zanskar River"
+],
+"exp-icefield": [
+"Southern Patagonian Ice Field"
+],
+"exp-ciudad-perdida": [
+"Ciudad Perdida"
+],
+"exp-ojos": [
+"Ojos del Salado"
+],
+"exp-carstensz": [
+"Puncak Jaya"
+],
+"exp-huayhuash": [
+"Cordillera Huayhuash"
+],
+"exp-pamir-highway": [
+"Pamir Highway",
+"Karakul (Tajikistan)"
+],
+"exp-atlantic-crew": [
+"Atlantic Rally for Cruisers",
+"Las Palmas"
+],
+"ant-yacht-drake": [
+"Drake Passage",
+"Lemaire Channel",
+"Sailing yacht",
+"Wandering albatross"
+],
+"arc-sampo": [
+"Sampo (icebreaker)",
+"Kemi"
+],
+"arc-dogsled": [
+"Dog sled",
+"Finnmarksvidda"
+],
+"exp-act": [
+"Arctic Circle Trail"
+],
+"arc-ittoqqortoormiit": [
+"Ittoqqortoormiit",
+"Scoresby Sound"
+],
+"exp-dalton": [
+"Dalton Highway"
+],
+"exp-tazara": [
+"TAZARA Railway",
+"Dar es Salaam"
+],
+"ghost-plymouth": [
+"Plymouth, Montserrat",
+"Soufrière Hills"
+],
+"ghost-devils-island": [
+"Îles du Salut",
+"Devil's Island",
+"Alfred Dreyfus"
+],
+"fire-karthala": [
+"Mount Karthala"
+]
+}

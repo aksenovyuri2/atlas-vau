@@ -3,37 +3,28 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@500;700&display=swap">
 <style>
-/* Layout: expedition chart table — a zoomable world chart on top, quick picks, a compact instrument bar, then logbook cards with a 15-month season strip. */
+/* Layout: светлый экспедиционный атлас — карта мира с точками, быстрые подборки и прогресс ачивок, компактная панель фильтров,
+   карточки с фото-обложкой и сезонной линейкой, подробная карточка места с галереей. Только светлая тема — осознанно. */
 :root{
-  --bg:#ECF0F2; --surface:#F8FAFB; --raised:#FFFFFF; --ink:#10212D; --muted:#566774; --line:#C8D3DA;
-  --accent:#D44D1C; --accent-soft:#F6DDD2; --sea:#DCE5EA; --land:#B9C8D1; --grid:#C2CFD7;
+  color-scheme:light;
+  --bg:#EEF2F4; --surface:#FFFFFF; --raised:#FFFFFF; --ink:#10212D; --muted:#566774; --line:#D2DBE1;
+  --accent:#D44D1C; --accent-soft:#FBE4D9; --sea:#DCE6EC; --land:#BCCAD3; --grid:#C6D2DA;
   --t10:#A8340C; --t9:#DE5A26; --t8:#EFA07B; --t7:#93A7B4;
-  --warn:#9A6400; --bad:#B0322A; --chip:#E1E8EC; --shadow:0 10px 30px rgba(16,33,45,.16);
+  --warn:#9A6400; --bad:#B0322A; --good:#2E7D4F; --good-soft:#DDF0E4; --chip:#E5ECF0;
+  --shadow:0 12px 34px rgba(16,33,45,.18); --shadow-sm:0 2px 8px rgba(16,33,45,.08);
   --f-display:"Unbounded","Arial Black",system-ui,sans-serif;
   --f-body:"Golos Text","Segoe UI",system-ui,-apple-system,sans-serif;
   --f-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
 }
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --bg:#08121A; --surface:#0E1C25; --raised:#13242F; --ink:#E1EAF0; --muted:#8EA1AE; --line:#223540;
-    --accent:#FF7A42; --accent-soft:#3A1E12; --sea:#0B1821; --land:#203340; --grid:#172833;
-    --t10:#FFA06C; --t9:#FF7A42; --t8:#A9603F; --t7:#4D6676;
-    --warn:#E3A845; --bad:#F2716A; --chip:#162733; --shadow:0 10px 30px rgba(0,0,0,.5); color-scheme:dark;
-  }
-}
-:root[data-theme="dark"]{
-  --bg:#08121A; --surface:#0E1C25; --raised:#13242F; --ink:#E1EAF0; --muted:#8EA1AE; --line:#223540;
-  --accent:#FF7A42; --accent-soft:#3A1E12; --sea:#0B1821; --land:#203340; --grid:#172833;
-  --t10:#FFA06C; --t9:#FF7A42; --t8:#A9603F; --t7:#4D6676;
-  --warn:#E3A845; --bad:#F2716A; --chip:#162733; --shadow:0 10px 30px rgba(0,0,0,.5); color-scheme:dark;
-}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
+html,body{background:var(--bg)}
+body{margin:0;color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
 a{color:inherit}
 button{font-family:inherit}
+img{max-width:100%}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.wrap{max-width:1240px;margin:0 auto;padding-inline:clamp(16px,3vw,32px);padding-block:28px 56px}
+.wrap{max-width:1280px;margin:0 auto;padding-inline:clamp(16px,3vw,32px);padding-block:28px 56px}
 
 /* header */
 .head{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:24px 48px;align-items:end;padding-bottom:22px}
@@ -44,35 +35,53 @@ h1 em{font-style:normal;color:var(--accent)}
 .scale{font-family:var(--f-mono);font-size:12.5px;line-height:1.6;color:var(--muted);display:grid;gap:5px}
 .scale .row{display:grid;grid-template-columns:14px 3.2em 1fr;gap:8px;align-items:center}
 .scale b{color:var(--ink);font-weight:500}
-.sw{width:10px;height:10px;border-radius:50%;display:inline-block}
+.sw{width:10px;height:10px;border-radius:50%;display:inline-block;flex:none}
 .sw.t10{background:var(--t10)}.sw.t9{background:var(--t9)}.sw.t8{background:var(--t8)}.sw.t7{background:var(--t7)}
+.scale-mini{display:none;margin:10px 0 0;font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+
+/* progress of achievements */
+.progress{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:8px 16px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin-bottom:16px}
+.progress .pt{font-family:var(--f-display);font-weight:700;font-size:20px;line-height:1;white-space:nowrap}
+.progress .pt small{font-family:var(--f-mono);font-weight:400;font-size:11px;color:var(--muted);letter-spacing:.04em;text-transform:uppercase;display:block;margin-bottom:4px}
+.bar{height:8px;background:var(--chip);border-radius:6px;overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--t9),var(--t10));border-radius:6px;transition:width .4s}
+.progress details{grid-column:1/-1;font-size:13px}
+.progress summary{cursor:pointer;color:var(--muted);font-family:var(--f-mono);font-size:11.5px;text-transform:uppercase;letter-spacing:.05em}
+.pcats{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr));gap:6px 18px;margin-top:10px}
+.pcat{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 8px;font-size:13px}
+.pcat .bar{grid-column:1/-1;height:4px}
+.pcat span:last-of-type{font-family:var(--f-mono);font-size:11px;color:var(--muted)}
+.progress .hint{font-size:12.5px;color:var(--muted);text-align:right}
 
 /* map */
-.chart{margin:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--sea);position:relative;overflow:hidden;touch-action:pan-y}
+.chart{margin:0;border:1px solid var(--line);border-radius:14px;background:var(--sea);position:relative;overflow:hidden;touch-action:pan-y}
 .chart.zoomed{touch-action:none;cursor:grab}
 .chart.dragging{cursor:grabbing}
 .chart svg{display:block;width:100%;height:auto;max-height:560px;user-select:none}
 .chart .land{fill:var(--land)}
 .chart .gl{stroke:var(--grid);stroke-width:.7;fill:none;vector-effect:non-scaling-stroke}
-.chart .gl.circle{stroke-dasharray:4 4;stroke:var(--muted);opacity:.55}
-.chart .gl.eq{stroke:var(--muted);opacity:.5}
+.chart .gl.circle{stroke-dasharray:4 4;stroke:var(--muted);opacity:.5}
+.chart .gl.eq{stroke:var(--muted);opacity:.45}
 .chart .gt{font-family:var(--f-mono);fill:var(--muted)}
 .chart .dot{stroke:var(--sea);stroke-width:1;vector-effect:non-scaling-stroke;transition:opacity .2s}
 .chart .dot.t10{fill:var(--t10)}.chart .dot.t9{fill:var(--t9)}.chart .dot.t8{fill:var(--t8)}.chart .dot.t7{fill:var(--t7)}
+.chart .dot.been{stroke:var(--good);stroke-width:2.2}
 .chart .dot.off{opacity:.1}
-.chart .dot.hl{stroke:var(--ink);stroke-width:2.5}
+.chart .dot.hl{stroke:var(--ink);stroke-width:2.6}
 .chart .home circle{fill:none;stroke:var(--ink);stroke-width:1.4;vector-effect:non-scaling-stroke}
 .chart .home text{font-family:var(--f-mono);fill:var(--ink)}
 .mapctl{position:absolute;top:10px;right:10px;display:flex;flex-direction:column;gap:4px}
-.mapctl button{width:34px;height:34px;border-radius:8px;border:1px solid var(--line);background:var(--raised);color:var(--ink);font:500 18px/1 var(--f-body);cursor:pointer;display:grid;place-items:center}
+.mapctl button{width:34px;height:34px;border-radius:8px;border:1px solid var(--line);background:var(--raised);color:var(--ink);font:500 18px/1 var(--f-body);cursor:pointer;display:grid;place-items:center;box-shadow:var(--shadow-sm)}
 .mapctl button:hover{border-color:var(--accent)}
 .maphint{position:absolute;left:12px;bottom:8px;font-family:var(--f-mono);font-size:11px;color:var(--muted);pointer-events:none;max-width:60%}
-.legend{position:absolute;right:12px;bottom:8px;display:flex;gap:10px;font-family:var(--f-mono);font-size:11px;color:var(--muted);background:color-mix(in srgb,var(--sea) 80%,transparent);padding:3px 6px;border-radius:6px;pointer-events:none}
+.legend{position:absolute;right:12px;bottom:8px;display:flex;gap:10px;font-family:var(--f-mono);font-size:11px;color:var(--muted);background:rgba(220,230,236,.85);padding:3px 6px;border-radius:6px;pointer-events:none}
 .legend span{display:inline-flex;align-items:center;gap:4px}
 
 /* tooltip + pinned popover */
-.tip{position:absolute;z-index:6;width:300px;max-width:calc(100% - 24px);background:var(--raised);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:12px 14px;display:grid;gap:8px;pointer-events:none}
+.tip{position:absolute;z-index:6;width:310px;max-width:calc(100% - 24px);background:var(--raised);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);overflow:hidden;pointer-events:none}
 .tip.pinned{pointer-events:auto}
+.tip .tph{height:140px;background:var(--chip) center/cover no-repeat}
+.tip .tb{padding:11px 14px 12px;display:grid;gap:7px}
 .tip .tcat{display:flex;justify-content:space-between;gap:8px;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 .tip .thead{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:start}
 .tip h4{margin:0;font-size:15.5px;line-height:1.25;font-weight:600}
@@ -85,22 +94,26 @@ h1 em{font-style:normal;color:var(--accent)}
 .tip dt{font-family:var(--f-mono);font-size:10px;text-transform:uppercase;color:var(--muted);padding-top:2px}
 .tip dd{margin:0}
 .tip .tact{display:flex;gap:6px;flex-wrap:wrap;padding-top:2px}
-.tip .tact button{font:500 13px var(--f-body);border-radius:7px;padding:6px 10px;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
-.tip .tact button.primary{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-.tip .tclose{position:absolute;top:6px;right:8px;border:0;background:none;color:var(--muted);font-size:18px;cursor:pointer;line-height:1;padding:4px}
+.btn{font:500 13px var(--f-body);border-radius:8px;padding:7px 11px;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--ink);display:inline-flex;align-items:center;gap:6px;text-decoration:none}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--ink);color:#fff;border-color:var(--ink)}
+.btn.on{background:var(--accent-soft);border-color:var(--accent)}
+.btn.been-on{background:var(--good-soft);border-color:var(--good);color:var(--good)}
+.tip .tclose{position:absolute;top:6px;right:6px;border:0;background:rgba(255,255,255,.9);color:var(--ink);font-size:16px;cursor:pointer;line-height:1;padding:4px 8px;border-radius:6px}
 .tip .thint{font-family:var(--f-mono);font-size:10.5px;color:var(--muted)}
-.tip.pinned .tcat{padding-right:24px}
 @media (max-width:640px){
-  .tip.pinned{position:fixed;left:12px!important;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));top:auto!important;width:auto;max-width:none;max-height:70vh;overflow:auto}
+  .tip.pinned{position:fixed;left:12px!important;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));top:auto!important;width:auto;max-width:none;max-height:72vh;overflow:auto}
 }
 
 /* quick picks */
-.picks{display:flex;flex-wrap:wrap;gap:8px;padding-block:16px 4px}
+.picks{display:flex;flex-wrap:wrap;gap:8px;padding-block:16px 4px;align-items:center}
 .picks button{font:500 13.5px var(--f-body);border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:7px 14px;cursor:pointer;display:inline-flex;gap:6px;align-items:baseline}
 .picks button span{font-family:var(--f-mono);font-size:11px;color:var(--muted)}
 .picks button:hover{border-color:var(--accent)}
 .picks button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
-.picks button[aria-pressed="true"] span{color:#fff;opacity:.8}
+.picks button[aria-pressed="true"] span{color:#fff;opacity:.85}
+.picks .random{margin-left:auto;background:var(--ink);color:#fff;border-color:var(--ink)}
+.picks .random:hover{background:var(--accent);border-color:var(--accent)}
 
 /* toolbar */
 .tools{background:var(--bg);border-bottom:1px solid var(--line);padding-block:12px;display:grid;gap:10px;z-index:5}
@@ -108,7 +121,7 @@ h1 em{font-style:normal;color:var(--accent)}
 .row1{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:flex-end}
 .tabs{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--surface)}
 .tabs button{font:500 14px var(--f-body);color:var(--muted);background:none;border:0;border-radius:999px;padding:6px 14px;cursor:pointer}
-.tabs button[aria-selected="true"]{background:var(--ink);color:var(--bg)}
+.tabs button[aria-selected="true"]{background:var(--ink);color:#fff}
 .field{display:flex;flex-direction:column;gap:2px;min-width:0}
 .field label{font-family:var(--f-mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 input[type=search],select{font:14px var(--f-body);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:6px 9px;min-width:0;height:34px}
@@ -122,8 +135,8 @@ input[type=search]{width:min(260px,100%)}
 .cats{display:flex;gap:6px;overflow-x:auto;scrollbar-width:thin;padding-bottom:2px;-webkit-mask-image:linear-gradient(90deg,#000 92%,transparent);mask-image:linear-gradient(90deg,#000 92%,transparent)}
 .cats button{flex:0 0 auto;font:500 13px var(--f-body);color:var(--ink);background:var(--chip);border:1px solid transparent;border-radius:6px;padding:5px 10px;cursor:pointer;display:inline-flex;gap:6px;align-items:baseline;white-space:nowrap}
 .cats button span{font-family:var(--f-mono);font-size:11px;color:var(--muted)}
-.cats button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
-.cats button[aria-pressed="true"] span{color:var(--bg);opacity:.7}
+.cats button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.cats button[aria-pressed="true"] span{color:#fff;opacity:.7}
 .status{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;font-family:var(--f-mono);font-size:12px;color:var(--muted)}
 .status .active{display:flex;flex-wrap:wrap;gap:6px}
 .status .active button{font:12.5px var(--f-body);border:1px solid var(--accent);background:var(--accent-soft);color:var(--ink);border-radius:999px;padding:2px 8px 2px 10px;cursor:pointer}
@@ -131,25 +144,45 @@ input[type=search]{width:min(260px,100%)}
 .reset{font:500 12.5px var(--f-body);background:none;border:0;color:var(--accent);cursor:pointer;padding:2px;text-decoration:underline;text-underline-offset:3px}
 
 /* cards */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));gap:14px;margin-top:18px}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px 12px;display:flex;flex-direction:column;gap:10px;min-width:0;scroll-margin-top:200px;transition:border-color .15s,transform .15s}
-.card:hover{border-color:color-mix(in srgb,var(--accent) 45%,var(--line))}
-.card.closed{opacity:.62}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:16px;margin-top:18px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;display:flex;flex-direction:column;min-width:0;overflow:hidden;scroll-margin-top:200px;transition:border-color .15s,box-shadow .15s,transform .15s}
+.card:hover{border-color:color-mix(in srgb,var(--accent) 40%,var(--line));box-shadow:var(--shadow-sm);transform:translateY(-1px)}
+.card.closed .cover img{filter:grayscale(.7)}
 .card.flash{animation:flash 1.6s ease-out}
 @keyframes flash{0%{box-shadow:0 0 0 3px var(--accent)}100%{box-shadow:0 0 0 0 transparent}}
-.ctop{display:flex;justify-content:space-between;align-items:center;gap:10px;font-family:var(--f-mono);font-size:11px;color:var(--muted)}
-.ctop .cat{text-transform:uppercase;letter-spacing:.07em}
-.star{border:0;background:none;cursor:pointer;color:var(--muted);font-size:18px;line-height:1;padding:2px 4px;border-radius:6px}
-.star:hover{color:var(--accent)}
-.star[aria-pressed="true"]{color:var(--accent)}
+.cover{position:relative;aspect-ratio:16/10;background:var(--chip);overflow:hidden;cursor:pointer}
+.cover img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
+.card:hover .cover img{transform:scale(1.03)}
+.cover .ph{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:16px;font-family:var(--f-mono);font-size:11px;color:var(--muted);background:repeating-linear-gradient(135deg,var(--chip) 0 10px,#EDF2F5 10px 20px)}
+.cover .ph b{display:block;font-family:var(--f-display);font-weight:500;font-size:13px;color:var(--ink);margin-bottom:4px}
+.cover .cat{position:absolute;top:10px;left:10px;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;background:rgba(255,255,255,.92);color:var(--ink);border-radius:6px;padding:3px 7px}
+.cover .acts{position:absolute;top:8px;right:8px;display:flex;gap:6px}
+.cover .acts button{width:32px;height:32px;border-radius:50%;border:0;background:rgba(255,255,255,.92);color:var(--muted);font-size:16px;line-height:1;cursor:pointer;display:grid;place-items:center;box-shadow:var(--shadow-sm)}
+.cover .acts button:hover{color:var(--accent)}
+.cover .acts .star[aria-pressed="true"]{color:var(--accent)}
+.cover .acts .beenb[aria-pressed="true"]{background:var(--good);color:#fff}
+.cover .nav{position:absolute;top:50%;transform:translateY(-50%);width:30px;height:30px;border-radius:50%;border:0;background:rgba(255,255,255,.88);color:var(--ink);cursor:pointer;font-size:16px;line-height:1;opacity:0;transition:opacity .15s;display:grid;place-items:center}
+.cover .nav.prev{left:8px}.cover .nav.next{right:8px}
+.cover:hover .nav,.cover .nav:focus-visible{opacity:1}
+@media (hover:none){.cover .nav{opacity:.85}}
+.cover .dots{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);display:flex;gap:5px}
+.cover .dots i{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.55)}
+.cover .dots i.on{background:#fff}
+.cover .been-badge{position:absolute;bottom:8px;left:10px;font-family:var(--f-mono);font-size:10.5px;background:var(--good);color:#fff;border-radius:6px;padding:2px 7px}
+.cbody{padding:14px 16px 12px;display:flex;flex-direction:column;gap:10px;flex:1}
 .chead{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:start}
 .card h3{font-size:17px;line-height:1.25;font-weight:600;margin:0;text-wrap:balance}
+.card h3 button{all:unset;cursor:pointer}
+.card h3 button:hover{color:var(--accent)}
+.card h3 button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .loc{margin:2px 0 0;color:var(--muted);font-size:13.5px}
-.wow{text-align:right;min-width:52px}
-.wow-n{font-family:var(--f-display);font-weight:700;font-size:26px;line-height:1;font-variant-numeric:tabular-nums;display:block}
+.wow{text-align:right;min-width:48px}
+.wow-n{font-family:var(--f-display);font-weight:700;font-size:25px;line-height:1;font-variant-numeric:tabular-nums;display:block}
 .wow-n.hi{color:var(--accent)}
 .wow-l{font-family:var(--f-mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
 .why{margin:0;font-size:14.5px}
+.fact{margin:0;font-size:13.5px;background:#FFF6EE;border-left:3px solid var(--t8);border-radius:0 8px 8px 0;padding:8px 10px;color:#3A2C22;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.fact b{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--t10);font-weight:500;margin-right:6px}
 /* season strip */
 .season{display:grid;gap:3px}
 .season .cells{display:grid;grid-template-columns:repeat(3,1fr) 6px repeat(12,1fr);gap:2px}
@@ -168,7 +201,7 @@ input[type=search]{width:min(260px,100%)}
 .chip{font-family:var(--f-mono);font-size:11px;border:1px solid var(--line);border-radius:4px;padding:2px 6px;color:var(--muted);white-space:nowrap}
 .chip.r1{color:var(--warn);border-color:var(--warn)}
 .chip.r2{color:var(--bad);border-color:var(--bad)}
-.chip.closed{color:var(--surface);background:var(--bad);border-color:var(--bad)}
+.chip.closed{color:#fff;background:var(--bad);border-color:var(--bad)}
 .chip.check{border-style:dashed}
 .chip.ok{color:var(--ink)}
 .cfoot{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:10px;padding-top:8px;border-top:1px dashed var(--line);font-family:var(--f-mono);font-size:11px;color:var(--muted)}
@@ -176,6 +209,9 @@ input[type=search]{width:min(260px,100%)}
 .cfoot a,.cfoot button{color:var(--accent);text-decoration:none;background:none;border:0;padding:0;cursor:pointer;font:inherit}
 .cfoot a:hover,.cfoot button:hover{text-decoration:underline}
 .empty{padding:40px 0;color:var(--muted);text-align:center;grid-column:1/-1}
+.loadmore{display:flex;justify-content:center;margin-top:18px}
+.loadmore button{font:500 14px var(--f-body);border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:10px 18px;cursor:pointer;color:var(--ink)}
+.loadmore button:hover{border-color:var(--accent)}
 
 /* calendar */
 .hist{margin-top:18px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 14px 10px}
@@ -187,29 +223,60 @@ input[type=search]{width:min(260px,100%)}
 .bars button .b{display:flex;flex-direction:column;justify-content:flex-end;border-radius:3px 3px 0 0;overflow:hidden;background:var(--t8)}
 .bars button .b i{display:block;background:var(--t9)}
 .bars button[aria-pressed="true"] .b{outline:2px solid var(--ink);outline-offset:1px}
-.bars button:hover .b{filter:brightness(1.08)}
-.bars .gap{display:block}
+.bars button:hover .b{filter:brightness(1.06)}
 .blbl{display:grid;grid-template-columns:repeat(3,1fr) 10px repeat(12,1fr);gap:4px;font-family:var(--f-mono);font-size:10px;color:var(--muted);text-align:center;margin-top:4px}
 .cal{margin-top:14px;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,360px),1fr));gap:14px}
 .month{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 14px 8px;min-width:0}
 .month h3{font-family:var(--f-display);font-weight:500;font-size:16px;margin:0 0 8px;display:flex;justify-content:space-between;align-items:baseline}
 .month h3 span{font-family:var(--f-mono);font-size:11px;color:var(--muted);font-weight:400}
 .month ol{list-style:none;margin:0;padding:0}
-.month li button{width:100%;text-align:left;background:none;border:0;border-top:1px solid var(--line);padding:7px 0;display:grid;grid-template-columns:2.6em minmax(0,1fr);gap:8px;cursor:pointer;color:var(--ink);font:inherit}
+.month li button{width:100%;text-align:left;background:none;border:0;border-top:1px solid var(--line);padding:7px 0;display:grid;grid-template-columns:44px 2.4em minmax(0,1fr);gap:10px;cursor:pointer;color:var(--ink);font:inherit;align-items:center}
 .month li button:hover .mt{text-decoration:underline}
+.mthumb{width:44px;height:34px;border-radius:5px;background:var(--chip) center/cover no-repeat}
 .mw{font-family:var(--f-display);font-weight:700;font-size:14px;font-variant-numeric:tabular-nums}
 .mw.hi{color:var(--accent)}
 .mt{font-size:14px;font-weight:500;display:block;line-height:1.3}
 .mp{font-size:12.5px;color:var(--muted);display:block}
 .month.year .yr{display:flex;flex-wrap:wrap;gap:6px;padding-bottom:6px}
 .month.year .yr button{font:13px var(--f-body);background:var(--chip);border:0;border-radius:5px;padding:4px 8px;color:var(--ink);cursor:pointer}
-
-footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);display:grid;gap:6px;max-width:80ch}
-footer p{margin:0}
-
-.scale-mini{display:none;margin:10px 0 0;font-family:var(--f-mono);font-size:12px;color:var(--muted)}
 .more-items{width:100%;margin:2px 0 6px;font:500 13px var(--f-body);background:var(--chip);border:0;border-radius:7px;padding:7px;color:var(--ink);cursor:pointer}
 .more-items:hover{color:var(--accent)}
+
+/* detail modal */
+.modal{position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:16px;background:rgba(16,33,45,.55);backdrop-filter:blur(2px)}
+.sheet{background:var(--surface);border-radius:16px;box-shadow:var(--shadow);width:min(980px,100%);max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px);overflow:auto;position:relative}
+.sheet .x{position:absolute;top:10px;right:10px;z-index:3;width:38px;height:38px;border-radius:50%;border:0;background:rgba(255,255,255,.94);font-size:20px;line-height:1;cursor:pointer;box-shadow:var(--shadow-sm)}
+.gal{position:relative;background:#0F1A22}
+.gal .main{width:100%;aspect-ratio:16/9;max-height:56vh;object-fit:cover;display:block;background:#0F1A22}
+.gal .ph{aspect-ratio:16/9;display:grid;place-items:center;color:#c9d4db;font-family:var(--f-mono);font-size:12px}
+.gal .nav{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;border:0;background:rgba(255,255,255,.9);font-size:20px;cursor:pointer;display:grid;place-items:center}
+.gal .nav.prev{left:12px}.gal .nav.next{right:12px}
+.gal .credit{position:absolute;right:10px;bottom:8px;font-family:var(--f-mono);font-size:10.5px;color:#fff;background:rgba(0,0,0,.45);padding:2px 7px;border-radius:5px;text-decoration:none}
+.gal .credit:hover{text-decoration:underline}
+.thumbs{display:flex;gap:8px;padding:10px 16px 0}
+.thumbs button{width:84px;height:56px;border-radius:7px;border:2px solid transparent;padding:0;background:var(--chip) center/cover no-repeat;cursor:pointer}
+.thumbs button[aria-current="true"]{border-color:var(--accent)}
+.dbody{padding:16px 22px 22px;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:18px 28px}
+.dhead{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:start}
+.dhead .dcat{font-family:var(--f-mono);font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
+.dhead h2{font-family:var(--f-display);font-weight:500;font-size:clamp(1.3rem,3vw,1.9rem);line-height:1.15;margin:0;text-wrap:balance}
+.dhead .dloc{margin:6px 0 0;color:var(--muted)}
+.dhead .wow-n{font-size:40px}
+.dmain{display:grid;gap:14px;align-content:start}
+.dmain .why{font-size:16px}
+.dmain .fact{-webkit-line-clamp:unset;font-size:14.5px;padding:10px 12px}
+.dside{display:grid;gap:14px;align-content:start}
+.dside .meta{font-size:14px}
+.dacts{display:flex;flex-wrap:wrap;gap:8px}
+.dcoord{font-family:var(--f-mono);font-size:11.5px;color:var(--muted)}
+.dnav{grid-column:1/-1;display:flex;justify-content:space-between;gap:10px;border-top:1px solid var(--line);padding-top:12px}
+.dnav button{max-width:48%;text-align:left}
+.dnav button:last-child{text-align:right;margin-left:auto}
+.dnav small{display:block;font-family:var(--f-mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+
+footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);display:grid;gap:6px;max-width:84ch}
+footer p{margin:0}
+
 @media (max-width:760px){
   .head{grid-template-columns:1fr}
   .scale{display:none}
@@ -217,6 +284,12 @@ footer p{margin:0}
   .maphint{display:none}
   .legend{left:8px;right:auto;bottom:6px;gap:7px;font-size:10px}
   .mapctl button{width:30px;height:30px;font-size:16px}
+  .progress{grid-template-columns:1fr}
+  .progress .hint{text-align:left}
+  .dbody{grid-template-columns:1fr;padding:14px 16px 18px}
+  .picks .random{margin-left:0}
+  .modal{padding:0;place-items:end center}
+  .sheet{border-radius:16px 16px 0 0;max-height:94vh;max-height:94dvh}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
@@ -226,7 +299,7 @@ footer p{margin:0}
     <div>
       <p class="eyebrow" id="eyebrow">Октябрь 2026 — декабрь 2027</p>
       <h1>Атлас <em>вау</em></h1>
-      <p class="lead">Места и события на уровне Антарктиды и выше: когда ехать, сколько стоит, чем рискуешь и что уже проверено свежими источниками.</p>
+      <p class="lead">Места и события на уровне Антарктиды и выше: когда ехать, сколько стоит, чем рискуешь, что там удивительного — и где ты уже был.</p>
       <p class="scale-mini">Шкала вау: 8 — круиз на Антарктический полуостров, 10 — полюс.</p>
     </div>
     <div class="scale" aria-label="Шкала вау и цвета точек">
@@ -236,6 +309,13 @@ footer p{margin:0}
       <div class="row"><i class="sw t7"></i><b>≤7,5</b><span>сильно, но доступнее или массовее</span></div>
     </div>
   </header>
+
+  <section class="progress" aria-label="Мои ачивки">
+    <div class="pt"><small>Ачивки</small><span id="pnum">0 из 0</span></div>
+    <div class="bar" aria-hidden="true"><i id="pbar" style="width:0%"></i></div>
+    <div class="hint" id="phint">Отмечай ✓ «Был тут» на карточках</div>
+    <details><summary>Прогресс по категориям</summary><div class="pcats" id="pcats"></div></details>
+  </section>
 
   <figure class="chart" id="chart" aria-label="Карта мест">
     <svg id="map" viewBox="0 0 1000 500" role="img" aria-labelledby="mapt">
@@ -250,7 +330,7 @@ footer p{margin:0}
       <button type="button" id="zreset" aria-label="Показать весь мир">⤢</button>
     </div>
     <div class="legend" aria-hidden="true"><span><i class="sw t10"></i>10</span><span><i class="sw t9"></i>9+</span><span><i class="sw t8"></i>8+</span><span><i class="sw t7"></i>≤7,5</span></div>
-    <figcaption class="maphint">Наведи на точку — краткая справка, нажми — закрепить. Двойной клик или «+» — приблизить, тяни карту мышью.</figcaption>
+    <figcaption class="maphint">Наведи на точку — фото и справка, нажми — закрепить. Двойной клик или «+» — приблизить, тяни карту мышью.</figcaption>
     <div class="tip" id="tip" role="dialog" aria-label="Справка о месте" hidden></div>
   </figure>
 
@@ -262,7 +342,7 @@ footer p{margin:0}
         <button role="tab" id="tab-cat" aria-selected="true">Каталог</button>
         <button role="tab" id="tab-cal" aria-selected="false">Календарь</button>
       </div>
-      <div class="field"><label for="q">Поиск</label><input type="search" id="q" placeholder="Страна, зверь, вулкан…" autocomplete="off"></div>
+      <div class="field"><label for="q">Поиск</label><input type="search" id="q" placeholder="Страна, зверь, вулкан, факт…" autocomplete="off"></div>
       <div class="field"><label for="month">Когда</label><select id="month"></select></div>
       <div class="field"><label for="budget">Бюджет от</label>
         <select id="budget">
@@ -294,6 +374,7 @@ footer p{margin:0}
       <label class="tg"><input type="checkbox" id="dated"> только разовые даты</label>
       <label class="tg"><input type="checkbox" id="verified"> только проверенные</label>
       <label class="tg"><input type="checkbox" id="fav"> только мой список</label>
+      <label class="tg"><input type="checkbox" id="hideBeen"> скрыть, где уже был</label>
       <label class="tg"><input type="checkbox" id="hideClosed" checked> скрыть закрытые</label>
     </div>
     <div class="cats" id="cats" aria-label="Категории"></div>
@@ -301,7 +382,10 @@ footer p{margin:0}
   </section>
 
   <main>
-    <div id="view-cat" class="grid" role="tabpanel" aria-labelledby="tab-cat"></div>
+    <div id="view-cat" role="tabpanel" aria-labelledby="tab-cat">
+      <div class="grid" id="grid"></div>
+      <div class="loadmore" id="loadmore" hidden><button type="button" id="loadbtn">Показать ещё</button></div>
+    </div>
     <div id="view-cal" role="tabpanel" aria-labelledby="tab-cal" hidden>
       <div class="hist" id="hist"></div>
       <div class="cal" id="cal"></div>
@@ -309,10 +393,15 @@ footer p{margin:0}
   </main>
 
   <footer>
-    <p>Собрано 3–4 октября 2026 года по отчётам пяти исследовательских агентов (полюса, вулканы и пещеры, дикая природа, космос и глубина, закрытые земли и ритуалы) и общим данным. Вторая волна 4 октября (острова, территории, крайние точки, ачивки) добавлена по общим данным и вся помечена «сверить». Карточки без этой пометки опираются на источники 2025–2026 годов.</p>
+    <p>Собрано 3–4 октября 2026 года по отчётам пяти исследовательских агентов и общим данным. Вторая волна (острова, территории, крайние точки, ачивки) добавлена по общим данным и помечена «сверить». Карточки без этой пометки опираются на источники 2025–2026 годов.</p>
     <p>Цены за человека, без международного перелёта, если не сказано иное. Рубли пересчитаны примерно по 85 ₽ за доллар. «Бюджет от» — нижняя граница самого дешёвого реального варианта.</p>
-    <p>«Виза» — нужна отдельная виза или разрешение, которых не даёт европейский ВНЖ; «рост» — есть ограничения по росту или тесно для высокого человека; «закрыто» — сейчас туда не попасть, оставлено, чтобы следить. «Мой список» хранится только в этом браузере.</p>
+    <p>«Виза» — нужна отдельная виза или разрешение, которых не даёт европейский ВНЖ; «рост» — есть ограничения по росту или тесно для высокого человека; «закрыто» — сейчас туда не попасть. «Мой список» и отметки «Был тут» хранятся только в этом браузере.</p>
+    <p>Фото — Wikimedia Commons через статьи Википедии; авторы и лицензии — на страницах файлов, ссылка «Commons ↗» в подробной карточке. Контуры суши — Natural Earth.</p>
   </footer>
+</div>
+
+<div class="modal" id="modal" hidden>
+  <article class="sheet" role="dialog" aria-modal="true" aria-labelledby="dtitle" id="sheet"></article>
 </div>
 
 <script>
@@ -321,8 +410,8 @@ __DATA__
 const CATS = [
   ["ant","Антарктида и Южный океан"],["arc","Арктика и Север"],["fire","Вулканы"],["cave","Пещеры"],
   ["land","Пустыни и ландшафты"],["sea","Под водой"],["wild","Звери на суше"],["sky","Небо и космос"],
-  ["deep","Глубина и скорость"],["lands","Закрытые и далёкие земли"],["isl","Далёкие острова"],["terr","Территории и анклавы"],["edge","Крайние точки и ачивки"],["rite","Ритуалы и паломничества"],
-  ["exp","Экспедиции-испытания"],["ghost","Призраки и странности"]
+  ["deep","Глубина и скорость"],["lands","Закрытые и далёкие земли"],["isl","Далёкие острова"],["terr","Территории и анклавы"],
+  ["edge","Крайние точки и ачивки"],["rite","Ритуалы и паломничества"],["exp","Экспедиции-испытания"],["ghost","Призраки и странности"]
 ];
 const CAT = Object.fromEntries(CATS);
 const MONTHS = ["январь","февраль","март","апрель","май","июнь","июль","август","сентябрь","октябрь","ноябрь","декабрь"];
@@ -334,6 +423,7 @@ for (let m = 1; m <= 12; m++) WIN.push("2027-" + String(m).padStart(2,"0"));
 const HOME = {la:36.7213, lo:-4.4214};
 const FLAG = {visa:"виза", height:"рост", cert:"нужен сертификат", sold:"распродано", closed:"закрыто", exp:"нужен опыт"};
 const BUDGET = {le1000:"до $1 000", le3000:"до $3 000", le10000:"до $10 000", gt10000:"дороже $10 000"};
+const PAGE = 48;
 
 function monthsOf(p){
   if (p.d) return p.d.filter(k => WIN.includes(k));
@@ -364,24 +454,32 @@ const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":
 const monthLabel = k => { const [y,m] = k.split("-"); const n = MONTHS[+m-1]; return n[0].toUpperCase() + n.slice(1) + " " + y; };
 const tier = w => w >= 10 ? "t10" : w >= 9 ? "t9" : w >= 8 ? "t8" : "t7";
 const coords = p => fmtCoord(p.la,"с.ш.","ю.ш.") + " " + fmtCoord(p.lo,"в.д.","з.д.");
+const kmText = p => fmtNum(Math.round(p.km/10)*10) + " км от Малаги";
+const plural = (n, one, few, many) => { const a = n % 10, b = n % 100; return a === 1 && b !== 11 ? one : a >= 2 && a <= 4 && (b < 12 || b > 14) ? few : many; };
 
 PLACES.forEach(p => {
   p.f = p.f || [];
+  p.fact = (typeof FACTS !== "undefined" && FACTS[p.id]) || "";
+  p.photos = (typeof PHOTOS !== "undefined" && PHOTOS[p.id]) || [];
   p.months = monthsOf(p);
   p.yearRound = !p.d && p.m === "1-12";
   p.km = dist(HOME.la, HOME.lo, p.la, p.lo);
   p.first = p.months.length ? WIN.indexOf(p.months[0]) : 99;
+  p.hay = (p.t + " " + p.loc + " " + p.why + " " + p.fact + " " + (p.n || "")).toLowerCase();
 });
 const BYID = Object.fromEntries(PLACES.map(p => [p.id, p]));
 
 // state
-const DEFAULT = {tab:"cat", q:"", cat:"all", month:"all", budget:"all", wow:"0", sort:"wow", near:false, dated:false, hideClosed:true, verified:false, fav:false, pick:"all"};
+const DEFAULT = {tab:"cat", q:"", cat:"all", month:"all", budget:"all", wow:"0", sort:"wow", near:false, dated:false, hideClosed:true, verified:false, fav:false, been:false, hideBeen:false, pick:"all"};
 let S = Object.assign({}, DEFAULT);
-let FAV = new Set();
-const OPEN = new Set(); // развёрнутые месяцы календаря
-try { const saved = JSON.parse(localStorage.getItem("atlas-vau-v2") || "null"); if (saved) S = Object.assign({}, DEFAULT, saved); } catch(e){}
+let FAV = new Set(), BEEN = new Set();
+const OPEN = new Set();       // развёрнутые месяцы календаря
+const SLIDE = {};             // текущее фото в обложке карточки
+let LIMIT = PAGE;
+try { const saved = JSON.parse(localStorage.getItem("atlas-vau-v3") || "null"); if (saved) S = Object.assign({}, DEFAULT, saved); } catch(e){}
 try { FAV = new Set(JSON.parse(localStorage.getItem("atlas-vau-fav") || "[]")); } catch(e){}
-function save(){ try { localStorage.setItem("atlas-vau-v2", JSON.stringify(S)); localStorage.setItem("atlas-vau-fav", JSON.stringify([...FAV])); } catch(e){} }
+try { BEEN = new Set(JSON.parse(localStorage.getItem("atlas-vau-been") || "[]")); } catch(e){}
+function save(){ try { localStorage.setItem("atlas-vau-v3", JSON.stringify(S)); localStorage.setItem("atlas-vau-fav", JSON.stringify([...FAV])); localStorage.setItem("atlas-vau-been", JSON.stringify([...BEEN])); } catch(e){} }
 
 const PICKS = [
   ["all","Всё",{}],
@@ -390,16 +488,14 @@ const PICKS = [
   ["top","Вау 9+",{wow:"9"}],
   ["cheap","До $1 000",{budget:"le1000"}],
   ["near","Рядом с Малагой",{near:true, sort:"dist"}],
-  ["fav","Мой список",{fav:true}]
+  ["fav","Мой список",{fav:true}],
+  ["been","Был тут",{been:true, hideClosed:false}]
 ];
 
 function matches(p, o){
   o = o || {};
   if (!o.ignoreCat && S.cat !== "all" && p.c !== S.cat) return false;
-  if (S.q){
-    const hay = (p.t + " " + p.loc + " " + p.why + " " + CAT[p.c]).toLowerCase();
-    if (!hay.includes(S.q.toLowerCase().trim())) return false;
-  }
+  if (S.q && !p.hay.includes(S.q.toLowerCase().trim())) return false;
   if (!o.ignoreMonth && S.month !== "all"){
     if (S.month === "2026"){ if (!p.months.some(k => k.startsWith("2026"))) return false; }
     else if (!p.months.includes(S.month)) return false;
@@ -414,6 +510,8 @@ function matches(p, o){
   if (S.hideClosed && p.f.includes("closed")) return false;
   if (S.verified && !p.v) return false;
   if (S.fav && !FAV.has(p.id)) return false;
+  if (S.been && !BEEN.has(p.id)) return false;
+  if (S.hideBeen && BEEN.has(p.id)) return false;
   return true;
 }
 function sorted(list){
@@ -425,6 +523,7 @@ function sorted(list){
   }[S.sort] || ((a,b) => b.w - a.w);
   return list.slice().sort(by);
 }
+let CURRENT = [];
 
 function chips(p){
   const out = [];
@@ -448,21 +547,39 @@ function season(p){
   return '<div class="season" aria-label="Месяцы, когда можно поехать"><div class="cap"><span>2026</span><span>' + cap + '</span><span>2027</span></div>' +
     '<div class="cells">' + cells.join("") + '</div><div class="lbl" aria-hidden="true">' + lbl.join("") + '</div></div>';
 }
+function placeholder(p){
+  return '<div class="ph"><span><b>' + esc(CAT[p.c]) + '</b>' + coords(p) + '</span></div>';
+}
+function coverImg(p, i){
+  const ph = p.photos[i];
+  if (!ph) return placeholder(p);
+  return '<img src="' + esc(ph.s) + '" alt="' + esc(p.t) + '" loading="lazy" decoding="async" referrerpolicy="no-referrer" data-err="' + p.id + '">';
+}
 function card(p){
-  const fav = FAV.has(p.id);
+  const fav = FAV.has(p.id), been = BEEN.has(p.id), i = SLIDE[p.id] || 0, n = p.photos.length;
   return '<article class="card' + (p.f.includes("closed") ? " closed" : "") + '" id="p-' + p.id + '" data-id="' + p.id + '">' +
-    '<div class="ctop"><span class="cat">' + esc(CAT[p.c]) + '</span><button type="button" class="star" data-fav="' + p.id + '" aria-pressed="' + fav + '" aria-label="' + (fav ? "Убрать из моего списка" : "Добавить в мой список") + '" title="Мой список">' + (fav ? "★" : "☆") + '</button></div>' +
-    '<div class="chead"><div><h3>' + esc(p.t) + '</h3><p class="loc">' + esc(p.loc) + '</p></div>' +
-    '<div class="wow"><span class="wow-n' + (p.w >= 9 ? " hi" : "") + '">' + fmtWow(p.w) + '</span><span class="wow-l">вау</span></div></div>' +
-    '<p class="why">' + esc(p.why) + '</p>' +
-    season(p) +
-    '<dl class="meta"><div><dt>Когда</dt><dd>' + esc(p.when) + '</dd></div><div><dt>Цена</dt><dd>' + esc(p.p) + '</dd></div></dl>' +
-    (p.n ? '<p class="note">' + esc(p.n) + '</p>' : '') +
-    '<div class="tags">' + chips(p) + '</div>' +
-    '<div class="cfoot"><span>' + coords(p) + ' · ' + fmtNum(Math.round(p.km/10)*10) + ' км от Малаги</span><span class="links">' +
-    '<button type="button" data-show="' + p.id + '">на карте</button>' +
-    (p.s ? '<a href="' + esc(p.s) + '" target="_blank" rel="noopener">источник ↗</a>' : '') + '</span></div>' +
-    '</article>';
+    '<div class="cover" data-open="' + p.id + '">' + coverImg(p, i) +
+      '<span class="cat">' + esc(CAT[p.c]) + '</span>' +
+      '<span class="acts">' +
+        '<button type="button" class="star" data-fav="' + p.id + '" aria-pressed="' + fav + '" aria-label="' + (fav ? "Убрать из моего списка" : "Добавить в мой список") + '" title="Мой список">' + (fav ? "★" : "☆") + '</button>' +
+        '<button type="button" class="beenb" data-been="' + p.id + '" aria-pressed="' + been + '" aria-label="' + (been ? "Убрать отметку «Был тут»" : "Отметить «Был тут»") + '" title="Был тут">✓</button>' +
+      '</span>' +
+      (n > 1 ? '<button type="button" class="nav prev" data-slide="' + p.id + '" data-dir="-1" aria-label="Предыдущее фото">‹</button><button type="button" class="nav next" data-slide="' + p.id + '" data-dir="1" aria-label="Следующее фото">›</button>' +
+        '<span class="dots" aria-hidden="true">' + p.photos.map((_, k) => '<i class="' + (k === i ? "on" : "") + '"></i>').join("") + '</span>' : '') +
+      (been ? '<span class="been-badge">был тут</span>' : '') +
+    '</div>' +
+    '<div class="cbody">' +
+      '<div class="chead"><div><h3><button type="button" data-open="' + p.id + '">' + esc(p.t) + '</button></h3><p class="loc">' + esc(p.loc) + '</p></div>' +
+      '<div class="wow"><span class="wow-n' + (p.w >= 9 ? " hi" : "") + '">' + fmtWow(p.w) + '</span><span class="wow-l">вау</span></div></div>' +
+      '<p class="why">' + esc(p.why) + '</p>' +
+      (p.fact ? '<p class="fact"><b>Факт</b>' + esc(p.fact) + '</p>' : '') +
+      season(p) +
+      '<dl class="meta"><div><dt>Когда</dt><dd>' + esc(p.when) + '</dd></div><div><dt>Цена</dt><dd>' + esc(p.p) + '</dd></div></dl>' +
+      '<div class="tags">' + chips(p) + '</div>' +
+      '<div class="cfoot"><span>' + kmText(p) + '</span><span class="links">' +
+        '<button type="button" data-show="' + p.id + '">на карте</button>' +
+        '<button type="button" data-open="' + p.id + '">подробнее</button></span></div>' +
+    '</div></article>';
 }
 
 const $ = id => document.getElementById(id);
@@ -471,8 +588,9 @@ function renderPicks(){
   $("picks").innerHTML = PICKS.map(([k,label]) => {
     let n = "";
     if (k === "fav") n = ' <span>' + FAV.size + '</span>';
+    if (k === "been") n = ' <span>' + BEEN.size + '</span>';
     return '<button type="button" data-pick="' + k + '" aria-pressed="' + (S.pick === k) + '">' + label + n + '</button>';
-  }).join("");
+  }).join("") + '<button type="button" class="random" id="random">Случайное место</button>';
 }
 function renderCats(){
   const base = PLACES.filter(p => matches(p, {ignoreCat:true}));
@@ -494,22 +612,39 @@ function renderActive(){
   if (S.dated) a.push(["dated", "разовые даты"]);
   if (S.verified) a.push(["verified", "проверенные"]);
   if (S.fav) a.push(["fav", "мой список"]);
+  if (S.been) a.push(["been", "был тут"]);
+  if (S.hideBeen) a.push(["hideBeen", "без посещённых"]);
   if (!S.hideClosed) a.push(["hideClosed", "с закрытыми"]);
   $("active").innerHTML = a.map(([k,l]) => '<button type="button" data-clear="' + k + '" aria-label="Убрать фильтр ' + esc(l) + '">' + esc(l) + '<b>×</b></button>').join("");
   $("reset").hidden = !a.length;
 }
+function renderProgress(){
+  const total = PLACES.length, n = BEEN.size;
+  $("pnum").textContent = n + " из " + total;
+  $("pbar").style.width = (n / total * 100).toFixed(1) + "%";
+  const top = PLACES.filter(p => BEEN.has(p.id) && p.w >= 9).length;
+  $("phint").textContent = n ? ("из них вау 9+: " + top + " · " + Math.round(n / total * 100) + "% атласа") : "Отмечай ✓ «Был тут» на карточках";
+  $("pcats").innerHTML = CATS.map(([k,label]) => {
+    const all = PLACES.filter(p => p.c === k).length, b = PLACES.filter(p => p.c === k && BEEN.has(p.id)).length;
+    return '<div class="pcat"><span>' + label + '</span><span>' + b + '/' + all + '</span><div class="bar"><i style="width:' + (b / all * 100).toFixed(1) + '%"></i></div></div>';
+  }).join("");
+}
 function renderCatalog(list){
   let empty = 'Под эти фильтры ничего не подходит. Ослабь бюджет или вау, или нажми «Сбросить всё».';
-  if (S.fav && !FAV.size) empty = 'В твоём списке пока пусто. Нажми ☆ на карточке, чтобы добавить место.';
-  $("view-cat").innerHTML = list.length ? list.map(card).join("") : '<p class="empty">' + empty + '</p>';
+  if (S.fav && !FAV.size) empty = 'В твоём списке пока пусто. Нажми ☆ на фото карточки, чтобы добавить место.';
+  if (S.been && !BEEN.size) empty = 'Пока нет отметок. Нажми ✓ на фото карточки места, где ты уже был.';
+  $("grid").innerHTML = list.length ? list.slice(0, LIMIT).map(card).join("") : '<p class="empty">' + empty + '</p>';
+  const rest = list.length - LIMIT;
+  $("loadmore").hidden = rest <= 0;
+  if (rest > 0) $("loadbtn").textContent = "Показать ещё " + Math.min(PAGE, rest) + " · осталось " + rest;
 }
+function thumbStyle(p){ return p.photos[0] ? ' style="background-image:url(&quot;' + esc(p.photos[0].s) + '&quot;)"' : ''; }
 function calRow(p){
-  return '<li><button type="button" data-go="' + p.id + '"><span class="mw' + (p.w >= 9 ? " hi" : "") + '">' + fmtWow(p.w) + '</span>' +
-    '<span><span class="mt">' + esc(p.t) + (FAV.has(p.id) ? ' <span style="color:var(--accent)">★</span>' : '') + '</span><span class="mp">' + esc(p.loc) + ' · ' + esc(p.p) + '</span></span></button></li>';
+  return '<li><button type="button" data-open="' + p.id + '"><span class="mthumb"' + thumbStyle(p) + '></span><span class="mw' + (p.w >= 9 ? " hi" : "") + '">' + fmtWow(p.w) + '</span>' +
+    '<span><span class="mt">' + esc(p.t) + (FAV.has(p.id) ? ' <span style="color:var(--accent)">★</span>' : '') + (BEEN.has(p.id) ? ' <span style="color:var(--good)">✓</span>' : '') + '</span><span class="mp">' + esc(p.loc) + ' · ' + esc(p.p) + '</span></span></button></li>';
 }
 function renderCalendar(){
   const list = sorted(PLACES.filter(p => matches(p, {ignoreMonth:true})));
-  // histogram
   const counts = WIN.map(k => { const items = list.filter(p => !p.yearRound && p.months.includes(k)); return [items.length, items.filter(p => p.w >= 9).length]; });
   const max = Math.max(1, ...counts.map(c => c[0]));
   const bars = [], lbls = [];
@@ -518,7 +653,7 @@ function renderCalendar(){
     const [n, top] = counts[i];
     const h = Math.round(n / max * 92);
     const th = n ? Math.round(top / n * 100) : 0;
-    bars.push('<button type="button" data-month="' + k + '" aria-pressed="' + (S.month === k) + '" title="' + monthLabel(k) + ': ' + n + ' мест, из них вау 9+: ' + top + '"><span class="n">' + n + '</span><span class="b" style="height:' + h + 'px"><i style="height:' + th + '%"></i></span></button>');
+    bars.push('<button type="button" data-month="' + k + '" aria-pressed="' + (S.month === k) + '" title="' + monthLabel(k) + ': ' + n + ' ' + plural(n,"место","места","мест") + ', из них вау 9+: ' + top + '"><span class="n">' + n + '</span><span class="b" style="height:' + h + 'px"><i style="height:' + th + '%"></i></span></button>');
     lbls.push('<span>' + MSHORT[+k.slice(5)-1] + '</span>');
   });
   $("hist").innerHTML = '<h3>Сколько мест по месяцам <span><span><i class="sw t9"></i> вау 9+</span><span><i class="sw t8"></i> остальные</span><span>нажми на месяц</span></span></h3>' +
@@ -531,13 +666,13 @@ function renderCalendar(){
     if (!items.length) return "";
     const open = OPEN.has(k) || items.length <= limit;
     const shown = open ? items : items.slice(0, limit);
-    const more = open ? (items.length > limit ? '<button type="button" class="more-items" data-open="' + k + '">Свернуть</button>' : '')
-                      : '<button type="button" class="more-items" data-open="' + k + '">Показать ещё ' + (items.length - limit) + '</button>';
-    return '<section class="month"><h3>' + monthLabel(k) + ' <span>' + items.length + ' мест</span></h3><ol>' + shown.map(calRow).join("") + '</ol>' + more + '</section>';
+    const more = open ? (items.length > limit ? '<button type="button" class="more-items" data-openm="' + k + '">Свернуть</button>' : '')
+                      : '<button type="button" class="more-items" data-openm="' + k + '">Показать ещё ' + (items.length - limit) + '</button>';
+    return '<section class="month"><h3>' + monthLabel(k) + ' <span>' + items.length + ' ' + plural(items.length,"место","места","мест") + '</span></h3><ol>' + shown.map(calRow).join("") + '</ol>' + more + '</section>';
   });
   const yr = list.filter(p => p.yearRound);
   if (yr.length) parts.push('<section class="month year"><h3>Круглый год <span>' + yr.length + '</span></h3><div class="yr">' +
-    yr.map(p => '<button type="button" data-go="' + p.id + '">' + esc(p.t) + ' · ' + fmtWow(p.w) + '</button>').join("") + '</div></section>');
+    yr.map(p => '<button type="button" data-open="' + p.id + '">' + esc(p.t) + ' · ' + fmtWow(p.w) + '</button>').join("") + '</div></section>');
   $("cal").innerHTML = parts.join("") || '<p class="empty">Под эти фильтры ничего не подходит.</p>';
 }
 
@@ -568,14 +703,14 @@ function drawDots(){
     el("circle",{class:"dot " + tier(p.w), cx:X(p.lo).toFixed(1), cy:Y(p.la).toFixed(1), r:1, "data-id":p.id},g);
   });
 }
-function screenScale(){ return (svg.clientWidth || 1000) / VB.w; } // screen px per svg unit
+function screenScale(){ return (svg.clientWidth || 1000) / VB.w; }
 function layoutMap(){
   svg.setAttribute("viewBox", VB.x.toFixed(2) + " " + VB.y.toFixed(2) + " " + VB.w.toFixed(2) + " " + VB.h.toFixed(2));
   const s = screenScale();
   const small = (svg.clientWidth || 1000) < 600;
   document.querySelectorAll("#dots .dot").forEach(c => {
     const p = BYID[c.dataset.id];
-    const px = small ? 2.2 + (p.w - 6) * 0.75 : 3 + (p.w - 6) * 1.25; // radius in screen px
+    const px = small ? 2.2 + (p.w - 6) * 0.75 : 3 + (p.w - 6) * 1.25;
     c.setAttribute("r", (px / s).toFixed(2));
   });
   document.querySelectorAll("#grat .gt").forEach(t => {
@@ -602,13 +737,8 @@ function zoomAt(f, cx, cy){
   VB.x = cx - (cx - VB.x) * k; VB.y = cy - (cy - VB.y) * k; VB.w = nw;
   clampVB(); layoutMap();
 }
-function zoomTo(p, w){
-  VB.w = w; VB.h = w / 2; VB.x = X(p.lo) - w / 2; VB.y = Y(p.la) - w / 4; clampVB(); layoutMap();
-}
-function toSvg(ev){
-  const pt = svg.createSVGPoint(); pt.x = ev.clientX; pt.y = ev.clientY;
-  return pt.matrixTransform(svg.getScreenCTM().inverse());
-}
+function zoomTo(p, w){ VB.w = w; VB.h = w / 2; VB.x = X(p.lo) - w / 2; VB.y = Y(p.la) - w / 4; clampVB(); layoutMap(); }
+function toSvg(ev){ const pt = svg.createSVGPoint(); pt.x = ev.clientX; pt.y = ev.clientY; return pt.matrixTransform(svg.getScreenCTM().inverse()); }
 function nearest(ev, radiusPx){
   const pt = toSvg(ev), s = screenScale();
   let best = null, bd = Infinity;
@@ -621,20 +751,18 @@ function nearest(ev, radiusPx){
 }
 function tipHTML(p, isPinned){
   const fav = FAV.has(p.id);
-  return (isPinned ? '<button type="button" class="tclose" data-close aria-label="Закрыть">×</button>' : '') +
-    '<div class="tcat"><span>' + esc(CAT[p.c]) + '</span><span>' + fmtNum(Math.round(p.km/10)*10) + ' км от Малаги</span></div>' +
+  const ph = p.photos[0] ? '<div class="tph" style="background-image:url(&quot;' + esc(p.photos[0].s) + '&quot;)"></div>' : '';
+  return (isPinned ? '<button type="button" class="tclose" data-close aria-label="Закрыть">×</button>' : '') + ph +
+    '<div class="tb"><div class="tcat"><span>' + esc(CAT[p.c]) + '</span><span>' + kmText(p) + '</span></div>' +
     '<div class="thead"><div><h4>' + esc(p.t) + '</h4><p class="tloc">' + esc(p.loc) + '</p></div><span class="tw' + (p.w >= 9 ? " hi" : "") + '">' + fmtWow(p.w) + '</span></div>' +
     '<p>' + esc(p.why) + '</p>' +
     '<dl><div><dt>Когда</dt><dd>' + esc(p.when) + '</dd></div><div><dt>Цена</dt><dd>' + esc(p.p) + '</dd></div></dl>' +
-    '<div class="tags">' + chips(p) + '</div>' +
     (isPinned
-      ? '<div class="tact"><button type="button" class="primary" data-go="' + p.id + '">Открыть карточку</button><button type="button" data-fav="' + p.id + '">' + (fav ? "★ В моём списке" : "☆ В мой список") + '</button></div>'
-      : '<span class="thint">нажми, чтобы закрепить</span>');
+      ? '<div class="tact"><button type="button" class="btn primary" data-open="' + p.id + '">Подробнее</button><button type="button" class="btn' + (fav ? " on" : "") + '" data-fav="' + p.id + '">' + (fav ? "★ В списке" : "☆ В список") + '</button></div>'
+      : '<span class="thint">нажми, чтобы закрепить</span>') + '</div>';
 }
 function placeTip(p){
-  const cr = chart.getBoundingClientRect();
-  const sr = svg.getBoundingClientRect();
-  const s = screenScale();
+  const cr = chart.getBoundingClientRect(), sr = svg.getBoundingClientRect(), s = screenScale();
   const px = (X(p.lo) - VB.x) * s + (sr.left - cr.left);
   const py = (Y(p.la) - VB.y) * s + (sr.top - cr.top);
   const w = tip.offsetWidth, h = tip.offsetHeight;
@@ -662,18 +790,20 @@ function pin(p){ pinned = p.id; showTip(p, true); }
 let VISIBLE = new Set();
 function updateDots(){
   VISIBLE = new Set(PLACES.filter(p => matches(p)).map(p => p.id));
-  document.querySelectorAll("#dots .dot").forEach(c => c.classList.toggle("off", !VISIBLE.has(c.dataset.id)));
+  document.querySelectorAll("#dots .dot").forEach(c => {
+    c.classList.toggle("off", !VISIBLE.has(c.dataset.id));
+    c.classList.toggle("been", BEEN.has(c.dataset.id));
+  });
   if (pinned && !VISIBLE.has(pinned)) hideTip();
 }
 
-// pointer handling: hover preview, click to pin, drag to pan
 let drag = null;
 svg.addEventListener("pointermove", ev => {
   if (drag){
     const s = screenScale();
     const dx = (ev.clientX - drag.x) / s, dy = (ev.clientY - drag.y) / s;
     if (Math.abs(ev.clientX - drag.x) + Math.abs(ev.clientY - drag.y) > 4) drag.moved = true;
-    if (drag.moved){ VB.x = drag.vx - dx; VB.y = drag.vy - dy; clampVB(); layoutMap(); chart.classList.add("dragging"); }
+    if (drag.moved && drag.zoomed){ VB.x = drag.vx - dx; VB.y = drag.vy - dy; clampVB(); layoutMap(); chart.classList.add("dragging"); }
     return;
   }
   if (ev.pointerType !== "mouse" || pinned) return;
@@ -697,22 +827,108 @@ svg.addEventListener("pointerup", ev => {
 svg.addEventListener("pointercancel", () => { drag = null; chart.classList.remove("dragging"); });
 svg.addEventListener("dblclick", ev => { const pt = toSvg(ev); zoomAt(2, pt.x, pt.y); });
 svg.addEventListener("wheel", ev => {
-  if (!ev.ctrlKey && !ev.metaKey) return; // pinch on trackpad or ctrl+wheel
+  if (!ev.ctrlKey && !ev.metaKey) return;
   ev.preventDefault(); const pt = toSvg(ev); zoomAt(ev.deltaY < 0 ? 1.25 : 0.8, pt.x, pt.y);
 }, {passive:false});
 $("zin").onclick = () => zoomAt(2, VB.x + VB.w/2, VB.y + VB.h/2);
 $("zout").onclick = () => zoomAt(0.5, VB.x + VB.w/2, VB.y + VB.h/2);
 $("zreset").onclick = () => { VB = {x:0,y:0,w:1000,h:500}; layoutMap(); };
-tip.addEventListener("click", ev => {
-  if (ev.target.closest("[data-close]")) hideTip();
+tip.addEventListener("click", ev => { if (ev.target.closest("[data-close]")) hideTip(); });
+
+/* ───────── detail modal ───────── */
+const modal = $("modal"), sheet = $("sheet");
+let DETAIL = null, DSLIDE = 0, lastFocus = null;
+function detailHTML(p){
+  const fav = FAV.has(p.id), been = BEEN.has(p.id);
+  const ph = p.photos[DSLIDE];
+  const n = p.photos.length;
+  const list = CURRENT.some(x => x.id === p.id) ? CURRENT : sorted(PLACES);
+  const idx = list.findIndex(x => x.id === p.id);
+  const prev = idx > 0 ? list[idx - 1] : null, next = idx >= 0 && idx < list.length - 1 ? list[idx + 1] : null;
+  return '<button type="button" class="x" data-dclose aria-label="Закрыть">×</button>' +
+    '<div class="gal">' +
+      (ph ? '<img class="main" src="' + esc(ph.l || ph.s) + '" alt="' + esc(ph.c || p.t) + '" referrerpolicy="no-referrer" data-err-main>' +
+            '<a class="credit" href="' + esc(ph.f) + '" target="_blank" rel="noopener">Фото ' + (DSLIDE + 1) + ' из ' + n + ' · Commons ↗</a>'
+          : '<div class="ph">Фото пока нет</div>') +
+      (n > 1 ? '<button type="button" class="nav prev" data-dslide="-1" aria-label="Предыдущее фото">‹</button><button type="button" class="nav next" data-dslide="1" aria-label="Следующее фото">›</button>' : '') +
+    '</div>' +
+    (n > 1 ? '<div class="thumbs">' + p.photos.map((x, k) => '<button type="button" data-dthumb="' + k + '" aria-label="Фото ' + (k + 1) + '" aria-current="' + (k === DSLIDE) + '" style="background-image:url(&quot;' + esc(x.s) + '&quot;)"></button>').join("") + '</div>' : '') +
+    '<div class="dbody">' +
+      '<div class="dhead"><div><p class="dcat">' + esc(CAT[p.c]) + '</p><h2 id="dtitle">' + esc(p.t) + '</h2><p class="dloc">' + esc(p.loc) + '</p></div>' +
+        '<div class="wow"><span class="wow-n' + (p.w >= 9 ? " hi" : "") + '">' + fmtWow(p.w) + '</span><span class="wow-l">вау</span></div></div>' +
+      '<div class="dmain"><p class="why">' + esc(p.why) + '</p>' +
+        (p.fact ? '<p class="fact"><b>Интересный факт</b>' + esc(p.fact) + '</p>' : '') +
+        (p.n ? '<p class="note">' + esc(p.n) + '</p>' : '') +
+        season(p) + '</div>' +
+      '<div class="dside"><dl class="meta"><div><dt>Когда</dt><dd>' + esc(p.when) + '</dd></div><div><dt>Цена</dt><dd>' + esc(p.p) + '</dd></div></dl>' +
+        '<div class="tags">' + chips(p) + '</div>' +
+        '<div class="dacts">' +
+          '<button type="button" class="btn' + (been ? " been-on" : "") + '" data-been="' + p.id + '">' + (been ? "✓ Был тут" : "✓ Отметить «Был тут»") + '</button>' +
+          '<button type="button" class="btn' + (fav ? " on" : "") + '" data-fav="' + p.id + '">' + (fav ? "★ В моём списке" : "☆ В мой список") + '</button>' +
+          '<button type="button" class="btn" data-show="' + p.id + '">На карте</button>' +
+          '<button type="button" class="btn" data-copy="' + p.id + '">Ссылка на место</button>' +
+          (p.s ? '<a class="btn" href="' + esc(p.s) + '" target="_blank" rel="noopener">Источник ↗</a>' : '') +
+        '</div>' +
+        '<p class="dcoord">' + coords(p) + ' · ' + kmText(p) + '</p></div>' +
+      '<div class="dnav">' +
+        (prev ? '<button type="button" class="btn" data-open="' + prev.id + '"><span><small>← предыдущее</small>' + esc(prev.t) + '</span></button>' : '<span></span>') +
+        (next ? '<button type="button" class="btn" data-open="' + next.id + '"><span><small>следующее →</small>' + esc(next.t) + '</span></button>' : '') +
+      '</div>' +
+    '</div>';
+}
+function openDetail(id, keepSlide){
+  const p = BYID[id]; if (!p) return;
+  if (!DETAIL) lastFocus = document.activeElement;
+  if (DETAIL !== id || !keepSlide) DSLIDE = 0;
+  DETAIL = id;
+  if (!tip.hidden) hideTip();
+  sheet.innerHTML = detailHTML(p);
+  if (modal.hidden){ modal.hidden = false; document.documentElement.style.overflow = "hidden"; }
+  sheet.scrollTop = keepSlide ? sheet.scrollTop : 0;
+  try { history.replaceState(null, "", "#" + id); } catch(e){}
+  if (!keepSlide) sheet.querySelector(".x").focus({preventScroll:true});
+}
+function closeDetail(){
+  modal.hidden = true; DETAIL = null; document.documentElement.style.overflow = "";
+  try { history.replaceState(null, "", location.pathname + location.search); } catch(e){}
+  if (lastFocus && lastFocus.focus) lastFocus.focus({preventScroll:true});
+}
+modal.addEventListener("click", ev => {
+  if (ev.target === modal || ev.target.closest("[data-dclose]")) { closeDetail(); return; }
+  const d = ev.target.closest("[data-dslide]");
+  if (d){ const n = BYID[DETAIL].photos.length; DSLIDE = (DSLIDE + Number(d.dataset.dslide) + n) % n; openDetail(DETAIL, true); return; }
+  const t = ev.target.closest("[data-dthumb]");
+  if (t){ DSLIDE = Number(t.dataset.dthumb); openDetail(DETAIL, true); return; }
+  const c = ev.target.closest("[data-copy]");
+  if (c){
+    const url = location.href.split("#")[0] + "#" + c.dataset.copy;
+    const done = () => { c.textContent = "Ссылка скопирована"; setTimeout(() => { c.textContent = "Ссылка на место"; }, 1800); };
+    try { navigator.clipboard.writeText(url).then(done, () => { c.textContent = url; }); } catch(e){ c.textContent = url; }
+  }
 });
-document.addEventListener("keydown", ev => { if (ev.key === "Escape" && !tip.hidden) hideTip(); });
+document.addEventListener("keydown", ev => {
+  if (ev.key === "Escape"){ if (!modal.hidden) closeDetail(); else if (!tip.hidden) hideTip(); }
+  if (!modal.hidden && (ev.key === "ArrowRight" || ev.key === "ArrowLeft")){
+    const b = sheet.querySelectorAll(".dnav [data-open]");
+    const target = [...b].find(x => ev.key === "ArrowRight" ? x.textContent.includes("следующее") : x.textContent.includes("предыдущее"));
+    if (target) openDetail(target.dataset.open);
+  }
+});
+document.addEventListener("error", ev => {
+  const img = ev.target;
+  if (!(img instanceof HTMLImageElement)) return;
+  if (img.dataset.err){ const p = BYID[img.dataset.err]; img.outerHTML = placeholder(p); }
+  else if (img.hasAttribute("data-err-main")){ img.outerHTML = '<div class="ph">Фото не загрузилось</div>'; }
+}, true);
 
 /* ───────── actions ───────── */
 function goCard(id){
   const p = BYID[id];
   if (!matches(p)){ S = Object.assign({}, DEFAULT, {hideClosed: !p.f.includes("closed")}); syncControls(); }
-  S.tab = "cat"; render();
+  S.tab = "cat";
+  const idx = sorted(PLACES.filter(x => matches(x))).findIndex(x => x.id === id);
+  if (idx >= LIMIT) LIMIT = Math.ceil((idx + 1) / PAGE) * PAGE;
+  render(true);
   const node = $("p-" + id);
   if (node){
     node.scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block:"start"});
@@ -721,28 +937,32 @@ function goCard(id){
 }
 function showOnMap(id){
   const p = BYID[id];
+  if (!modal.hidden) closeDetail();
+  if (!matches(p)){ S = Object.assign({}, DEFAULT, {tab:S.tab, hideClosed: !p.f.includes("closed")}); syncControls(); render(); }
   chart.scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block:"center"});
   zoomTo(p, 250);
-  setTimeout(() => pin(p), 350);
+  setTimeout(() => pin(p), 380);
 }
-function toggleFav(id){
-  if (FAV.has(id)) FAV.delete(id); else FAV.add(id);
-  render();
+function toggleSet(set, id){ if (set.has(id)) set.delete(id); else set.add(id); }
+function refreshAfterMark(id){
+  render(true);
   if (pinned === id) showTip(BYID[id], true);
+  if (DETAIL === id) openDetail(id, true);
 }
 function syncControls(){
   $("q").value = S.q; $("month").value = S.month; $("budget").value = S.budget; $("wow").value = S.wow; $("sort").value = S.sort;
-  ["near","dated","hideClosed","verified","fav"].forEach(k => $(k).checked = !!S[k]);
+  ["near","dated","hideClosed","verified","fav","hideBeen"].forEach(k => $(k).checked = !!S[k]);
 }
-function render(){
+function render(keepLimit){
+  if (!keepLimit) LIMIT = PAGE;
   $("tab-cat").setAttribute("aria-selected", S.tab === "cat");
   $("tab-cal").setAttribute("aria-selected", S.tab === "cal");
   $("view-cat").hidden = S.tab !== "cat";
   $("view-cal").hidden = S.tab !== "cal";
-  renderPicks(); renderCats(); renderActive();
-  const list = sorted(PLACES.filter(p => matches(p)));
-  if (S.tab === "cat") renderCatalog(list); else renderCalendar();
-  $("count").textContent = "Показано " + list.length + " из " + PLACES.length + " · вау 9+: " + list.filter(p => p.w >= 9).length;
+  renderPicks(); renderCats(); renderActive(); renderProgress();
+  CURRENT = sorted(PLACES.filter(p => matches(p)));
+  if (S.tab === "cat") renderCatalog(CURRENT); else renderCalendar();
+  $("count").textContent = "Показано " + CURRENT.length + " из " + PLACES.length + " · вау 9+: " + CURRENT.filter(p => p.w >= 9).length;
   updateDots();
   save();
 }
@@ -750,33 +970,49 @@ function setS(patch){ Object.assign(S, patch, {pick:null}); syncControls(); rend
 
 (function init(){
   $("month").innerHTML = '<option value="all">любой месяц</option><option value="2026">успеть в 2026</option>' + WIN.map(k => '<option value="' + k + '">' + monthLabel(k) + '</option>').join("");
-  const pl = n => { const a = n % 10, b = n % 100; return a === 1 && b !== 11 ? "место" : a >= 2 && a <= 4 && (b < 12 || b > 14) ? "места" : "мест"; };
-  $("eyebrow").textContent = "Октябрь 2026 — декабрь 2027 · " + PLACES.length + " " + pl(PLACES.length) + " · " + CATS.length + " категорий";
+  $("eyebrow").textContent = "Октябрь 2026 — декабрь 2027 · " + PLACES.length + " " + plural(PLACES.length,"место","места","мест") + " · " + CATS.length + " категорий";
   drawGrat(); drawDots(); syncControls(); render(); layoutMap();
 
   $("tab-cat").onclick = () => { S.tab = "cat"; render(); };
   $("tab-cal").onclick = () => { S.tab = "cal"; render(); };
   $("q").addEventListener("input", e => setS({q:e.target.value}));
   ["month","budget","wow","sort"].forEach(k => $(k).addEventListener("change", e => setS({[k]:e.target.value})));
-  ["near","dated","hideClosed","verified","fav"].forEach(k => $(k).addEventListener("change", e => setS({[k]:e.target.checked})));
+  ["near","dated","hideClosed","verified","fav","hideBeen"].forEach(k => $(k).addEventListener("change", e => setS({[k]:e.target.checked})));
   $("more").onclick = () => { const t = $("toggles"); t.hidden = !t.hidden; $("more").setAttribute("aria-expanded", String(!t.hidden)); };
   $("reset").onclick = () => { S = Object.assign({}, DEFAULT, {tab:S.tab}); syncControls(); render(); };
+  $("loadbtn").onclick = () => { LIMIT += PAGE; render(true); };
   $("picks").addEventListener("click", e => {
+    if (e.target.closest("#random")){
+      const pool = CURRENT.length ? CURRENT : PLACES;
+      openDetail(pool[Math.floor(Math.random() * pool.length)].id); return;
+    }
     const b = e.target.closest("[data-pick]"); if (!b) return;
     const pk = PICKS.find(x => x[0] === b.dataset.pick);
     S = Object.assign({}, DEFAULT, {tab:S.tab}, pk[2], {pick:pk[0]}); syncControls(); render();
   });
   $("cats").addEventListener("click", e => { const b = e.target.closest("[data-cat]"); if (b) setS({cat:b.dataset.cat}); });
   $("active").addEventListener("click", e => { const b = e.target.closest("[data-clear]"); if (b) setS({[b.dataset.clear]: DEFAULT[b.dataset.clear]}); });
-  $("cal").addEventListener("click", e => { const b = e.target.closest("[data-open]"); if (!b) return; const k = b.dataset.open; OPEN.has(k) ? OPEN.delete(k) : OPEN.add(k); renderCalendar(); });
   $("hist").addEventListener("click", e => { const b = e.target.closest("[data-month]"); if (b) setS({month: S.month === b.dataset.month ? "all" : b.dataset.month}); });
+  $("cal").addEventListener("click", e => { const b = e.target.closest("[data-openm]"); if (!b) return; const k = b.dataset.openm; OPEN.has(k) ? OPEN.delete(k) : OPEN.add(k); renderCalendar(); });
   document.addEventListener("click", e => {
-    const fav = e.target.closest("[data-fav]"); if (fav){ toggleFav(fav.dataset.fav); return; }
-    const go = e.target.closest("[data-go]"); if (go){ const id = go.dataset.go; if (!tip.hidden) hideTip(); goCard(id); return; }
+    const sl = e.target.closest("[data-slide]");
+    if (sl){
+      e.stopPropagation();
+      const p = BYID[sl.dataset.slide], n = p.photos.length;
+      SLIDE[p.id] = ((SLIDE[p.id] || 0) + Number(sl.dataset.dir) + n) % n;
+      const cardEl = $("p-" + p.id); if (cardEl) cardEl.outerHTML = card(p);
+      return;
+    }
+    const fav = e.target.closest("[data-fav]"); if (fav){ toggleSet(FAV, fav.dataset.fav); refreshAfterMark(fav.dataset.fav); return; }
+    const been = e.target.closest("[data-been]"); if (been){ toggleSet(BEEN, been.dataset.been); refreshAfterMark(been.dataset.been); return; }
     const sh = e.target.closest("[data-show]"); if (sh){ showOnMap(sh.dataset.show); return; }
+    const op = e.target.closest("[data-open]"); if (op){ openDetail(op.dataset.open); return; }
   });
-  $("view-cat").addEventListener("mouseover", e => { const c = e.target.closest(".card"); if (c && !pinned) setHL(c.dataset.id); });
-  $("view-cat").addEventListener("mouseleave", () => { if (!pinned) setHL(null); });
+  $("grid").addEventListener("mouseover", e => { const c = e.target.closest(".card"); if (c && !pinned) setHL(c.dataset.id); });
+  $("grid").addEventListener("mouseleave", () => { if (!pinned) setHL(null); });
   let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(layoutMap, 120); });
+  const fromHash = () => { const id = decodeURIComponent(location.hash.slice(1)); if (id && BYID[id]) openDetail(id); };
+  addEventListener("hashchange", fromHash);
+  fromHash();
 })();
 </script>
